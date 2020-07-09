@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button (click)="isCollapsed = !isCollapsed" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="!isCollapsed" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="isCollapsed" class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" >Cart </a>
+        </li>
+        <li *ngIf="!isLogged" class="nav-item">
+          <a class="nav-link" routerLink="/login" >Login</a>
+        </li>
+        <!-- <li *ngIf="isLogged" class="nav-item">
+            <a class="nav-link" (click)="logout()">Logout</a>
+          </li> -->
+        <li *ngIf="isLogged" class="nav-item">
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{user}}</button>
+                <div class="nav-item" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <a class="nav-link" ngbDropdownItem>Action - 1</a>
+                  <a class="nav-link" ngbDropdownItem>Another Action</a>
+                  <a class="nav-link" (click)="logout()" ngbDropdownItem>Logout</a>
+                </div>
+            </div>
+        </li>
+      </ul>
+    </div>
+  </nav>

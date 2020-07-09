@@ -21,6 +21,6 @@ export class LoginComponent implements OnInit {
     this.service.createNewUser(form.value['email'],form.value['password']);
   }
   userLogin(form: HTMLInputElement){
-    this.service.login(form.value['email'],form.value['password']);
+    this.service.login(form.value['email'],form.value['password']).subscribe();
   }
 }
