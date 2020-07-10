@@ -1,5 +1,8 @@
 <div class="login-form">
 
+  <div *ngIf="error" class="alert alert-danger">
+      {{error['error']}}
+  </div>
     <!-- login  -->
     <div *ngIf="haveAccount">
         <div><h3>Login</h3></div>

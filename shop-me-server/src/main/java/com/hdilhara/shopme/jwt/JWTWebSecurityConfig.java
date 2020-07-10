@@ -64,7 +64,9 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/system/**").hasAuthority("admin")
             .antMatchers("/user/**").hasAnyAuthority("admin","user")
             .antMatchers("/addUser").permitAll()
+            .antMatchers("/product/**").permitAll()
             .antMatchers("/shopme/**").permitAll()
+            .antMatchers("/images/**").permitAll()
             .anyRequest().authenticated();
 
 

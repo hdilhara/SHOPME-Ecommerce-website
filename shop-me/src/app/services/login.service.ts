@@ -28,7 +28,7 @@ export class LoginService{
     }
 
     createNewUser(email,password){
-        this._http.post(
+        return this._http.post(
             environment.addNewUser,
             {
                 username:email,
@@ -40,8 +40,8 @@ export class LoginService{
                 this._router.navigate(['/']);
                 this.subjectLog.next(this.loggedinDetails());
             })
-        )
-        .subscribe();
+        );
+        
     }
     login(email,password){
         return this._http.post(

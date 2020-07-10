@@ -18,7 +18,7 @@
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{user}}</button>
                 <div class="nav-item" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                  <a class="nav-link" ngbDropdownItem>Action - 1</a>
+                  <a class="nav-link" routerLink="/system/manage/products" ngbDropdownItem>Manage Products</a>
                   <a class="nav-link" ngbDropdownItem>Another Action</a>
                   <a class="nav-link" (click)="logout()" ngbDropdownItem>Logout</a>
                 </div>
