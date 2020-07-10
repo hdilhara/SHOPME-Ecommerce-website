@@ -22,7 +22,7 @@ public class Product {
 	private float price;
 	private String imageUrl;
 	
-	@JsonBackReference
+	
 	@ManyToOne
 	@JoinColumn(name = "categoryId")
 	private Category category;

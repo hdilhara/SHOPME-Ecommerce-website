@@ -11,6 +11,8 @@ import { LoginComponent } from './components/login/login.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ManageProductComponent } from './components/manage-product/manage-product.component';
+import { ProductComponent } from './components/product/product.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AppComponent,
     LoginComponent,
     HomePageComponent,
-    NavbarComponent
+    NavbarComponent,
+    ManageProductComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {path:'',component:HomePageComponent},
-      // {path: '/system/manage/products', component:ManageProductsComponent},
+      {path: 'system/manage/products', component:ManageProductComponent},
       {path:'login',component:LoginComponent}
     ])
   ],
