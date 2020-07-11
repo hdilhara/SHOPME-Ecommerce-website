@@ -1,0 +1,20 @@
+<a routerLink="/system/manage/products" ><button type="button" class="btn btn-light" >&lt; Back</button></a>
+
+<div *ngIf="error" class="alert alert-danger">
+    {{error['error']}}
+</div>
+
+  <div >
+      <div><h3>Edit</h3></div>
+      <form #form="ngForm" (ngSubmit)="updateProduct(form)" > 
+          <div class="form-group">
+            <label for="">Title</label>
+            <input ngModel name="title" [value]="title" type="text" class="form-control" aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <label for="">Price</label>
+            <input ngModel name="price" [value]="price" type="text" class="form-control"  aria-describedby="emailHelp">
+          </div>
+          <button type="submit" class="btn btn-success">Update</button>
+        </form>
+  </div>

@@ -1,1 +1,37 @@
-<p>product works!</p>
+<a routerLink="/system/manage/products" ><button type="button" class="btn btn-light" >&lt; Back</button></a>
+
+<div *ngIf="error" class="alert alert-danger">
+    {{error['error']}}
+</div>
+
+  <div >
+      <div><h3>ADD PRODUCT</h3></div>
+      <form #form="ngForm" (ngSubmit)="addNewProduct(form)" > 
+          <div class="alert alert-danger" *ngIf="form.dirty && form.invalid">
+                Please fill all fields 
+          </div>
+          <div class="form-group">
+            <label for="">Title</label>
+            <input ngModel name="title" [value]="title" type="text" class="form-control" aria-describedby="emailHelp"
+            required>
+          </div>
+          <div class="form-group">
+            <label for="">Price</label>
+            <input ngModel name="price" [value]="price" type="number" class="form-control"  aria-describedby="emailHelp"
+            required>
+          </div>
+          <div class="form-group">
+            <label for="">Category</label>
+            <select  ngModel name="category" class="form-control form-control-sm"
+            required >
+                <option *ngFor="let cate of categories" [value]="cate['categoryId']">{{cate['category']}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="">Product Image</label>
+            <input (change)="getFiles($event)" ngModel name="image" type="file" class="form-control" aria-describedby="emailHelp"
+            required>
+          </div>
+          <button type="submit" class="btn btn-success">CREATE</button>
+        </form>
+  </div>

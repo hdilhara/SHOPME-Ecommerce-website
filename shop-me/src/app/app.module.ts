@@ -1,9 +1,10 @@
+import { LoginInterceptor } from './services/LoginInterceptor.service';
 
 import { ErrorHandlerService } from './services/error-handler.service';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -13,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ManageProductComponent } from './components/manage-product/manage-product.component';
 import { ProductComponent } from './components/product/product.component';
+import { UpdateProductComponent } from './components/update-product/update-product.component';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { ProductComponent } from './components/product/product.component';
     HomePageComponent,
     NavbarComponent,
     ManageProductComponent,
-    ProductComponent
+    ProductComponent,
+    UpdateProductComponent
   ],
   imports: [
     BrowserModule,
@@ -31,12 +34,15 @@ import { ProductComponent } from './components/product/product.component';
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {path:'',component:HomePageComponent},
-      {path: 'system/manage/products', component:ManageProductComponent},
+      {path: 'system/update/product/:product-id', component: UpdateProductComponent },
+      {path: 'system/manage/products', component:ManageProductComponent },
+      {path: 'system/add/product', component: ProductComponent },
       {path:'login',component:LoginComponent}
     ])
   ],
   providers: [
-    {provide: ErrorHandler , useClass:ErrorHandlerService}
+    {provide: ErrorHandler , useClass:ErrorHandlerService},
+    {provide: HTTP_INTERCEPTORS, useClass: LoginInterceptor, multi:true}
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,4 @@
+<a routerLink="/system/add/product"><button type="button" class="btn btn-outline-success">ADD PRODUCT</button></a>
 <table class="table table-borderless">
     <thead>
       <tr>
@@ -13,7 +14,7 @@
         <td>{{product.title}}</td>
         <td>{{product.price}}</td>
         <td>{{product.category.category}}</td>
-        <!-- <td><a [routerLink]="['system/manage/products/edit/',product.productId]">edit</a></td> -->
+        <td><a [routerLink]="['/system/update/product',product.productId]">edit</a></td>
       </tr>
     </tbody>
   </table>
