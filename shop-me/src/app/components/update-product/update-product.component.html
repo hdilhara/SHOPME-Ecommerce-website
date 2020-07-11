@@ -6,15 +6,40 @@
 
   <div >
       <div><h3>Edit</h3></div>
+      <img [src]="product.imageUrl" class="prduct-image" alt="">
       <form #form="ngForm" (ngSubmit)="updateProduct(form)" > 
-          <div class="form-group">
-            <label for="">Title</label>
-            <input ngModel name="title" [value]="title" type="text" class="form-control" aria-describedby="emailHelp">
-          </div>
-          <div class="form-group">
-            <label for="">Price</label>
-            <input ngModel name="price" [value]="price" type="text" class="form-control"  aria-describedby="emailHelp">
-          </div>
-          <button type="submit" class="btn btn-success">Update</button>
-        </form>
+        <div class="alert alert-danger" *ngIf="form.dirty && form.invalid">
+              Please fill all fields 
+        </div>
+        <div class="form-group">
+          <label for="">Title</label>
+          <input  name="title" [(ngModel)]="product.title" type="text" class="form-control" aria-describedby="emailHelp"
+          required>
+        </div>
+        <div class="form-group">
+          <label for="">Price</label>
+          <input  name="price" [(ngModel)]="product.price" type="number" class="form-control"  aria-describedby="emailHelp"
+          required>
+        </div>
+        <div class="form-group">
+          <label for="">Category</label>
+          <select   class="form-control form-control-sm"
+          required >
+              <option *ngFor="let cate of categories"  name="category" [(ngModel)]="cate['categoryId']" >{{cate['category']}}</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">UPDATE</button>
+      </form>
+
+      
+      <button type="button" class="btn btn-danger delete-btn" (click)="deleteProduct()" >DELETE&nbsp;</button>
+
+      <!-- <div class="form-group">
+        <label for="">Product Image</label>
+        <input (change)="getFiles($event)" ngModel name="image" type="file" class="form-control" aria-describedby="emailHelp"
+        required
+        accept=".jpeg,.png,.jpg">
+      </div> -->
+
   </div>

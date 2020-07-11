@@ -15,6 +15,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ManageProductComponent } from './components/manage-product/manage-product.component';
 import { ProductComponent } from './components/product/product.component';
 import { UpdateProductComponent } from './components/update-product/update-product.component';
+import { TestComponent } from './components/test/test.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { UpdateProductComponent } from './components/update-product/update-produ
     NavbarComponent,
     ManageProductComponent,
     ProductComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

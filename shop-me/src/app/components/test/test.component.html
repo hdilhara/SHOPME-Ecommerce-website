@@ -1,0 +1,18 @@
+<p>test works!</p>
+<div >
+    <div><h3>Edit</h3></div>
+    <!-- <img [src]="product.imageUrl" class="prduct-image" alt=""> -->
+    <form #form="ngForm" (ngSubmit)="updateProduct(form)" > 
+        <input [(ngModel)]="product.title" name="title" type="text" >
+      <button type="submit" class="btn btn-success">UPDATE</button>
+    </form>
+
+
+    <!-- <div class="form-group">
+      <label for="">Product Image</label>
+      <input (change)="getFiles($event)" ngModel name="image" type="file" class="form-control" aria-describedby="emailHelp"
+      required
+      accept=".jpeg,.png,.jpg">
+    </div> -->
+
+</div>

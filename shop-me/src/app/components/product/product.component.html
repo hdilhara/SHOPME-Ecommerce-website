@@ -30,7 +30,8 @@
           <div class="form-group">
             <label for="">Product Image</label>
             <input (change)="getFiles($event)" ngModel name="image" type="file" class="form-control" aria-describedby="emailHelp"
-            required>
+            required
+            accept=".jpeg,.png,.jpg">
           </div>
           <button type="submit" class="btn btn-success">CREATE</button>
         </form>

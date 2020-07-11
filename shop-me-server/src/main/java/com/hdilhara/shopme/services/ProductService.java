@@ -8,9 +8,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DeadlockLoserDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.hdilhara.shopme.dto.ProductDetailsDto;
 import com.hdilhara.shopme.dto.ProductDto;
+import com.hdilhara.shopme.entity.Category;
 import com.hdilhara.shopme.entity.Product;
 import com.hdilhara.shopme.repos.ProductRepo;
 
@@ -66,6 +69,30 @@ public class ProductService {
 			return product.get();
 		else 
 			return null;
+	}
+
+	public boolean upadteProductDetails(ProductDetailsDto details) {
+		Optional<Product> optProduct = productRepo.findById(details.getProductId());
+		if(!optProduct.isPresent())
+			return false;
+		else {
+			Product product=optProduct.get();
+			Optional<Category> category= categoryService.categoryRepo.findById(details.getCategoryId());
+			product.setPrice(details.getPrice());
+			product.setCategory(category.get());
+			product.setTitle(details.getTitle());
+			productRepo.save(product);
+		}
+		return true;
+	}
+
+	public boolean deleteProduct(int id) {
+		try {
+			productRepo.deleteById(id);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 
