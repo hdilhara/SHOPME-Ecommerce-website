@@ -3,10 +3,18 @@ CREATE DATABASE IF NOT EXISTS shopme ;
 USE shopme;
 
 CREATE TABLE IF NOT EXISTS users(
-	id INT NOT NULL ,
 	username VARCHAR(150) PRIMARY KEY NOT NULL,
-    `password` VARCHAR(255) NOT NULl,
-    `role` VARCHAR(50) NOT NULL
+    password VARCHAR(255) NOT NULl
+);
+
+CREATE TABLE IF NOT EXISTS authorities(
+    authority VARCHAR(50) PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS `users_authorities`(
+    username VARCHAR(50) NOT NULL,
+    authority VARCHAR(50) NOT NULL,
+    PRIMARY KEY (username,authority)
 );
 
 CREATE TABLE category (

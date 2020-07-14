@@ -13,9 +13,15 @@ export class NavbarComponent implements OnInit {
   isCollapsed = true;
 
   constructor(private service:LoginService) {
-    if(service.isLogged){
+
+    if(service.isLogged()){
+      console.log('logged!');
       this.isLogged=true;
       this.user=service.loggedinDetails()['sub'];
+    }
+    else{
+      console.log('not logged!');
+      this.isLogged=false;
     }
     service.loggingAlert().subscribe(
       res=>{

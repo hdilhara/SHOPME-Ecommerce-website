@@ -40,7 +40,8 @@ public class AppController {
 			if(existUser.isPresent()) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User Already Exists");
 			}
-			Users user=new Users(1,userDto.getUsername(),passwordEncoder.encode(userDto.getPassword()),"user");
+			Users user=new Users(userDto.getUsername(),passwordEncoder.encode(userDto.getPassword()));
+				user.addAuthorityUser();
 				userRepo.save(user);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("USER_NOT_CREATEDPlase supply valid values!");
@@ -54,7 +55,7 @@ public class AppController {
 			if(existUser.isPresent()) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User Already Exists");
 			}
-			Users user=new Users(1,userDto.getUsername(),passwordEncoder.encode(userDto.getPassword()),"admin");
+			Users user=new Users(userDto.getUsername(),passwordEncoder.encode(userDto.getPassword()));
 				userRepo.save(user);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("USER_NOT_CREATEDPlase supply valid values!");

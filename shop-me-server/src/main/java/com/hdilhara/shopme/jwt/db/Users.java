@@ -1,44 +1,63 @@
 package com.hdilhara.shopme.jwt.db;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.ManyToAny;
 
 @Entity
 @Table(name="users")
 public class Users {
 
-	private int id;
-	
 	@Id
 	private String username;
 	private String password;
-	private String role;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "users_authorities",
+			joinColumns = @JoinColumn(name="username"),
+			inverseJoinColumns = @JoinColumn(name="authority")
+			)
+	private List<Authorities> authorities;
 	
+	
+	//custom method
+	public void addAuthorityAdmin() {
+		if(authorities==null) {
+			authorities=new ArrayList<Authorities>();
+		}
+		authorities.add(new Authorities("admin"));
+	}
+	public void addAuthorityUser() {
+		if(authorities==null) {
+			authorities=new ArrayList<Authorities>();
+		}
+		authorities.add(new Authorities("user"));
+	}
 	
 	
 	public Users() {
 		super();
 	}
+
 	
-	public Users(int id, String username, String password, String role) {
+	public Users(String username, String password) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.role = role;
 	}
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -51,13 +70,15 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getRole() {
-		return role;
+
+	public List<Authorities> getAuthorities() {
+		return authorities;
 	}
-	public void setRole(String role) {
-		this.role = role;
+
+	public void setAuthorities(List<Authorities> authorities) {
+		this.authorities = authorities;
 	}
-	
+
 	
 	
 	

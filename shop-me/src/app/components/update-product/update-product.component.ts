@@ -40,9 +40,11 @@ export class UpdateProductComponent implements OnInit {
   }
 
   updateProduct(form: HTMLInputElement){
-    console.log(form.form.value);
     this.service.updateProduct(form.form.value,this.id).subscribe(
-      res=>{},
+      res=>{
+        this.error=null;
+        this.router.navigate(['/system/manage/products']);
+      },
       error=>{
         console.log(error)
       }
@@ -57,7 +59,6 @@ export class UpdateProductComponent implements OnInit {
       },
       error=>{
         this.error='Can\'t Delete this product!';
-        this.router.navigate(['/system/manage/products']);
       }
     )
   }

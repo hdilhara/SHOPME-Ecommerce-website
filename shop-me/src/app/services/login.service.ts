@@ -1,6 +1,7 @@
+import { InterceptorSkipHeader } from './LoginInterceptor.service';
 import { environment } from './../../environments/environment';
 import { Injectable, Injector } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as jwt_decode from "jwt-decode";
 
 import { map } from "rxjs/operators";
@@ -28,11 +29,17 @@ export class LoginService{
     }
 
     createNewUser(email,password){
+
+        //to avoid adding authorzation header
+        const headers = new HttpHeaders().set(InterceptorSkipHeader, '');
+
         return this._http.post(
             environment.addNewUser,
             {
                 username:email,
                 password: password
+            },{
+                headers
             }
         )
         .pipe(
@@ -44,16 +51,21 @@ export class LoginService{
         
     }
     login(email,password){
+        //to avoid adding authorzation header
+        const headers = new HttpHeaders().set(InterceptorSkipHeader, '');
+
         return this._http.post(
             environment.authenticate,
             {
                 username:email,
                 password: password
+            },{
+                headers
             }
         )
         .pipe(
             map(res=>{//if succed
-                localStorage.setItem('token',res['token']);
+                localStorage.setItem('token',res['jwt']);
                 this._router.navigate(['/']);
                 this.subjectLog.next(this.loggedinDetails());
             })

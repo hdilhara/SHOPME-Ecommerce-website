@@ -1,5 +1,8 @@
+import { Router } from '@angular/router';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
+import { error } from 'protractor';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
@@ -9,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProductComponent implements OnInit {
 
   error=null;
+  success = null;
   categories;
 
   file;
@@ -22,8 +26,18 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  addNewProduct(form:HTMLInputElement){
-   this.service.addNewProduct(form,this.file['0']).subscribe();
+  addNewProduct(form:NgForm){
+     this.service.addNewProduct(form,this.file['0']).subscribe(
+        res=>{
+          this.success=true;
+          this.error=false;
+          form.resetForm();
+        },
+        error=>{
+          console.log(error)
+          this.error=true;
+        }
+     );
   }
   
   getFiles(event) {

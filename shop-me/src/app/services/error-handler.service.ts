@@ -1,15 +1,16 @@
+import { HttpHeaders } from '@angular/common/http';
 import { ErrorHandler } from '@angular/core';
 
 
 export class ErrorHandlerService implements ErrorHandler{
-    handleError(error: any){
-        if(error['status']===0)
-        alert('You are not connected!(Server is down!)');
-        else if(error['status']===404)
+    handleError(res: any){
+        if(res['status']===0)
+        alert('You are not connected! or not authorized');
+        else if(res['status']===404)
         alert('Page not found!');
-        else if(error['status']===403)
+        else if(res['status']===403)
         alert('Access denied!');
-        else if(error['status']===401)
+        else if(res['status']===401)
         alert('Please login first to see resources');
     }
 }

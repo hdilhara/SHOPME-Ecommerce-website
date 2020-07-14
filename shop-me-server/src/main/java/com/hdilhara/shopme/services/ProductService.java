@@ -88,6 +88,11 @@ public class ProductService {
 
 	public boolean deleteProduct(int id) {
 		try {
+			String imgURL=productRepo.findById(id).get().getImageUrl();
+			String[] urlSplit=imgURL.split("/");
+			imgURL=urlSplit[urlSplit.length-1];
+			Path path=Paths.get("static/images/"+imgURL);
+			Files.deleteIfExists(path);
 			productRepo.deleteById(id);
 			return true;
 		} catch (Exception e) {

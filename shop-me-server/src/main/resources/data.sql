@@ -1,6 +1,9 @@
 -- create default admin
-INSERT INTO `shopme`.`users` (`username`, `id`, `password`, `role`) VALUES ('admin', '1', '$2a$10$tVWrchqlsoGsiCSjJ1EZseNC7QGCzWYXTONgLQldoRsb4gy1MqUU2', 'admin');
+INSERT INTO `shopme`.`users` (`username`, `password`) VALUES ('admin', '$2a$10$tVWrchqlsoGsiCSjJ1EZseNC7QGCzWYXTONgLQldoRsb4gy1MqUU2');
 
+INSERT INTO `shopme`.`authorities` (`authority`) VALUES ('admin');
+
+INSERT INTO `shopme`.`users_authorities` (`username`, `authority`) VALUES ('admin', 'admin');
 
 
 INSERT INTO `shopme`.`category` (`category`) VALUES ('Backery');
