@@ -10,10 +10,12 @@ export class LoginInterceptor implements HttpInterceptor{
 
     intercept(req: HttpRequest<any>, next: HttpHandler){
 
+        let url=req.url;
         if(req.headers.has(InterceptorSkipHeader)){
             const headers = req.headers.delete(InterceptorSkipHeader);
             return next.handle(req);
         }
+        if(url.includes('system')){
         let token=localStorage.getItem('token');
 
         req= req.clone({
@@ -21,6 +23,7 @@ export class LoginInterceptor implements HttpInterceptor{
                 Authorization: 'Bearer '+token
             }
         })
+        }
         return next.handle(req);
     }
 }

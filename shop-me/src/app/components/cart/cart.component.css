@@ -1,0 +1,19 @@
+.product-image{
+    width: 69px;
+    height: 69px;
+    border-radius: 69px;
+}
+.empty-cart{
+    margin-top: 122px;
+    text-align: center;
+}
+.count-btn{
+    width: 27px;
+    padding: 0;
+    margin: 0px 10px;
+
+}
+
+.txt-align-center{
+    text-align: center;
+}
