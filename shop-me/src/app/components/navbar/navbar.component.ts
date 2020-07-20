@@ -1,18 +1,22 @@
+import { Subscription } from 'rxjs';
+import { CartService } from './../../services/cart-service';
 import { LoginService } from './../../services/login.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit,OnDestroy {
 
   isLogged;
   user='';
   isCollapsed = true;
+  cartCount;
+  subscription: Subscription;
 
-  constructor(private service:LoginService) {
+  constructor(private service:LoginService,private cartService:CartService) {
 
     if(service.isLogged()){
       console.log('logged!');
@@ -35,6 +39,12 @@ export class NavbarComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.cartCount=this.cartService.count;
+    this.subscription= this.cartService.notifyCartChange().subscribe(
+      res=>{
+        this.cartCount=res;
+      }
+    )
   }
 
   logout(){
@@ -42,5 +52,6 @@ export class NavbarComponent implements OnInit {
     this.isLogged=false;
   }
 
+ngOnDestroy(){this.subscription.unsubscribe();}  
 
 }

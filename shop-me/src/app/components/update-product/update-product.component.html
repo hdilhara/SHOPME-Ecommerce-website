@@ -3,7 +3,9 @@
 <div *ngIf="error" class="alert alert-danger">
     {{error['error']}}
 </div>
-
+<div>
+  <app-add-category></app-add-category>
+</div>
   <div >
       <div><h3>Edit</h3></div>
       <img [src]="product.imageUrl" class="prduct-image" alt="">
@@ -24,9 +26,11 @@
         <div class="form-group">
           <label for="">Category</label>
           <select   class="form-control form-control-sm"
-          required >
-              <option *ngFor="let cate of categories"  name="category" [(ngModel)]="cate['categoryId']" >{{cate['category']}}</option>
-          </select>
+          required >    
+          <option  >xxxxxxxx</option>  
+          <option *ngFor="let cate of categories"  name="category" [selected]="cate.category==hostedCategory"  >{{cate['category']}}</option>
+          <option  [selected]="val">sdsd</option>  
+        </select>
         </div>
 
         <button type="submit" class="btn btn-success">UPDATE</button>

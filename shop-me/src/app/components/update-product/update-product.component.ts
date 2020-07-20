@@ -1,28 +1,28 @@
 import { ProductService } from './../../services/product.service';
-import { error } from 'protractor';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-update-product',
   templateUrl: './update-product.component.html',
   styleUrls: ['./update-product.component.css']
 })
-export class UpdateProductComponent implements OnInit {
+export class UpdateProductComponent implements OnInit,OnDestroy {
 
   error=null;
   product;
   id;
+  hostedCategory;
   categories;
+  val=false;
+  subscription:Subscription;
+
   constructor( private service: ProductService,private activeRoute:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
     //load categories
-    this.categories=this.service.allCategories().subscribe(
-      res=>{
-        this.categories=res;
-      }
-    );
+    this.loadCategories();
 
     this.activeRoute.paramMap.subscribe(
       paramMap=>{
@@ -30,13 +30,29 @@ export class UpdateProductComponent implements OnInit {
       }
     );
     
-    this.product=this.service.getProductById(this.id).subscribe(
+    this.service.getProductById(this.id).subscribe(
       res=>{
-
         this.product=res;
-        console.log(res);
+        this.hostedCategory=this.product.category.category;
+      },
+      error=>{
+        console.log(error); 
+      }
+    );     
+
+    //notify when add new category
+    this.subscription = this.service.notifyService().subscribe(
+      res=>{
+        this.loadCategories();
+      },
+      error=>{
+        this.error='Can\'t add category';  
       }
     );
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   updateProduct(form: HTMLInputElement){
@@ -62,5 +78,14 @@ export class UpdateProductComponent implements OnInit {
       }
     )
   }
+
+  loadCategories(){
+    this.categories=this.service.allCategories().subscribe(
+      res=>{
+        this.categories=res;
+      }
+    );
+  }
+
 
 }
