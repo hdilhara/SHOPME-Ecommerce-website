@@ -1,0 +1,19 @@
+.main-drop-down{
+    border: 2px solid black;
+    border-radius: 6px;
+    font-size: large;
+    color: black;
+    display: inline-block;
+    vertical-align: -8px;
+    background: none;
+}
+
+.bi-shop-window{
+    display: inline-block;
+    vertical-align: -2px;
+}
+
+.bi-person-circle{
+    display: inline-block;
+    vertical-align: -2px;
+}
