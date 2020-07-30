@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div *ngIf="!isLogedIn">
+                Plese Login First 
+            </div>
+            <div *ngIf="isLogedIn" >
+                <div style="text-align: center;">
+                    <h4>Welcome back {{user}}!</h4>
+                    <br>
+                    <b>Your Deliver Details</b>
+                    <div *ngIf="!have">
+                        * Please Add Deliver Address & Contact Number
+                    </div>
+                </div>
+                <form #form=ngForm (ngSubmit)="addDeliverDetails(form)">
+                    <b>Name</b>
+                    <div class="form-group">
+                        <input [(ngModel)]="deliveryDetails.name" name="name" class="form-control" type="text" placeholder="Name">
+                    </div>
+                    <b>Address</b>
+                    <div class="form-group">
+                        <input [(ngModel)]="deliveryDetails.streetAddress1" name="streetAddress1" class="form-control" type="text" placeholder="Street Address">
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="deliveryDetails.streetAddress2" name="streetAddress2" class="form-control" type="text" placeholder="Street Address Line 2">
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="deliveryDetails.city" name="city" class="form-control" type="text" placeholder="City">
+                    </div>
+                    <b>Contact No</b>
+                    <div class="form-group">
+                        <input [(ngModel)]="deliveryDetails.contactNumber" name="contactNumber" class="form-control" type="number" placeholder="Contact No">
+                    </div>
+                    <button type="submit" class="btn btn-outline-success btn-sm" [textContent]="have?'Change My Deliver Details':'Add Deliver Details'"></button>
+                </form>
+                <div style="text-align: center;">
+                    <b>Total Payment : {{totalPayment | currency :'රු .'}}</b><br>
+                    <input ngModel name="confirm" type="checkbox" >
+                    agree to pay when product delivered. <br>
+                    <button  type="button" class="btn btn-success btn-sm" [disabled]="!have"> Confirm Order</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

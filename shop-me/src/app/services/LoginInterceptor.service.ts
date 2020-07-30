@@ -15,7 +15,7 @@ export class LoginInterceptor implements HttpInterceptor{
             const headers = req.headers.delete(InterceptorSkipHeader);
             return next.handle(req);
         }
-        if(url.includes('system')){
+        if(url.includes('system') || url.includes('user')){
         let token=localStorage.getItem('token');
 
         req= req.clone({

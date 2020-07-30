@@ -18,6 +18,7 @@ import { UpdateProductComponent } from './components/update-product/update-produ
 import { TestComponent } from './components/test/test.component';
 import { AddCategoryComponent } from './components/add-category/add-category.component';
 import { CartComponent } from './components/cart/cart.component';
+import { OrderComponent } from './components/order/order.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CartComponent } from './components/cart/cart.component';
     UpdateProductComponent,
     TestComponent,
     AddCategoryComponent,
-    CartComponent
+    CartComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -39,12 +41,13 @@ import { CartComponent } from './components/cart/cart.component';
     FormsModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
-      {path:'',component:HomePageComponent},
-      {path:'cart', component: CartComponent},
+      {path: '',component:HomePageComponent},
+      {path: 'cart', component: CartComponent},
+      {path: 'order', component: OrderComponent},
       {path: 'system/update/product/:product-id', component: UpdateProductComponent },
       {path: 'system/manage/products', component:ManageProductComponent },
       {path: 'system/add/product', component: ProductComponent },
-      {path:'login',component:LoginComponent}
+      {path: 'login',component:LoginComponent}
     ])
   ],
   providers: [

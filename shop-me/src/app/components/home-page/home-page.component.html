@@ -5,7 +5,7 @@
             
             <ul class="list-group">
                 <li class="list-group-item " [class.active]="category_type=='All'" (click)="getAllProducts()">All Categories</li>
-                <li *ngFor="let category of categories" [class.active]="category.category===category_type" class="list-group-item" (click)="getProductsByCategory(category.categoryId,category.category)">{{category.category}}</li>\
+                <li *ngFor="let category of categories" [class.active]="category.category===category_type" class="list-group-item" (click)="getProductsByCategory(category.categoryId,category.category)">{{category.category}}</li>
               </ul>
         </div>
         <div class="col-md-9">

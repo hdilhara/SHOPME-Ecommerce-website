@@ -18,7 +18,7 @@
             
             <div>
                 Do you want clear cart ?
-                <a (click)="clearCart()">Clear My Cart</a> 
+                <a (click)="clearCart()"><button class="btn btn-outline-danger btn-sm">Clear Cart</button></a> 
             </div>
                  
             <table class="table">
@@ -44,7 +44,7 @@
                       <tr >
                         <td></td>
                         <td></td>
-                        <td><button class="btn btn-success">Place Order</button></td>
+                        <td><a routerLink="/order"><button class="btn btn-success">Place Order</button></a></td>
                         <td><b> {{total | currency :'රු .'}}</b></td>
                       </tr>
                 </tbody>

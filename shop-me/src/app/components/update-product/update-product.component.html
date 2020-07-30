@@ -1,4 +1,7 @@
-<a routerLink="/system/manage/products" ><button type="button" class="btn btn-light" >&lt; Back</button></a>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <a routerLink="/system/manage/products" ><button type="button" class="btn btn-light" >&lt; Back</button></a>
 
 <div *ngIf="error" class="alert alert-danger">
     {{error['error']}}
@@ -7,8 +10,9 @@
   <app-add-category></app-add-category>
 </div>
   <div >
-      <div><h3>Edit</h3></div>
-      <img [src]="product.imageUrl" class="prduct-image" alt="">
+      <div  style="text-align: center;"><h3>Edit</h3>
+         <img [src]="product.imageUrl" class="prduct-image" alt="">
+      </div>
       <form #form="ngForm" (ngSubmit)="updateProduct(form)" > 
         <div class="alert alert-danger" *ngIf="form.dirty && form.invalid">
               Please fill all fields 
@@ -26,8 +30,7 @@
         <div class="form-group">
           <label for="">Category</label>
           <select   class="form-control form-control-sm"
-          required >    
-          <option  >xxxxxxxx</option>  
+          required >     
           <option *ngFor="let cate of categories"  name="category" [selected]="cate.category==hostedCategory"  >{{cate['category']}}</option>
           <option  [selected]="val">sdsd</option>  
         </select>
@@ -47,3 +50,6 @@
       </div> -->
 
   </div>
+    </div>
+  </div>
+</div>
