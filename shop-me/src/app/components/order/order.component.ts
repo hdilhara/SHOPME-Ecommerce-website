@@ -41,7 +41,7 @@ export class OrderComponent implements OnInit {
         this.have=true;
       },
       error=>{
-        
+
       }
     );
   }
@@ -80,11 +80,15 @@ export class OrderComponent implements OnInit {
     this.userService.createOrder(orderDetails)
     .subscribe(
       res=>{
-        console.log('success');
         this.orderCreated=true;
-        this.router.navigate(['/']);
+        setTimeout(()=>{this.router.navigate(['/']);}, 3000);
       }
     );
+  }
+
+  navigateToHomePage(){
+    console.log('timeout');
+    
   }
 
 }

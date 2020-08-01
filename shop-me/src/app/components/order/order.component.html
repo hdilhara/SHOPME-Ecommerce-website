@@ -40,7 +40,7 @@
                 <div style="text-align: center;">
                     <b>Total Payment : {{totalPayment | currency :'රු .'}}</b><br>
                     <input ngModel name="confirm" type="checkbox" >
-                    agree to pay when product delivered. val of have-{{have}}<br>
+                    agree to pay when product delivered. **val of have-{{have}} order created-{{orderCreated}}<br>
                     <button  type="button" class="btn btn-success btn-sm" [disabled]="!have" (click)="createOrder()"> Confirm Order</button>
                 </div>
 

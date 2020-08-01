@@ -36,33 +36,38 @@ public class UserController {
 	
 	@Autowired
 	OrderService orderService;
+
 	
-	Map<String, String> responseMap = new HashMap();
 	
 	@PostMapping("/add/delivery-details")
 	public ResponseEntity addDeliveryDetails(@RequestBody UserDetails userDetails) {
+		Map<String, String> responseMap = new HashMap();
+		System.out.println("xxxxxx");
 		if(userDetailsService.addDeliverDetails(userDetails)) {
-			return ResponseEntity.status(HttpStatus.ACCEPTED).body(responseMap.put("msg","DELIVER_DETAILS_ADDED_SUCCESSFULLY"));
+			responseMap.put("msg","DELIVER_DETAILS_ADDED_SUCCESSFULLY");
+			return  ResponseEntity.status(HttpStatus.ACCEPTED).body(responseMap);
 		}
-		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(responseMap.put("msg","DELIVERDETAILS_CREATED_FAILED"));
+		responseMap.put("msg","DELIVERDETAILS_CREATED_FAILED");
+		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(responseMap);
 	}
 	
 	@GetMapping("/get/delivery-details/{userName}")
 	public ResponseEntity getUserDetails(@PathVariable String userName) {
+		Map<String, String> responseMap = new HashMap();
 		Optional<UserDetails> userDetails = userDetailsService.getUserDetails(userName);
-		System.out.println(userDetails.isPresent());
 		if(userDetails.isPresent())
 		{
 			return ResponseEntity.ok(userDetails.get());
 		}
 		else {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseMap.put("msg", "USERNAME_IS_NOT_EXISTS"));
+			responseMap.put("msg", "USERNAME_IS_NOT_EXISTS");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseMap);
 		}
 	}
 	
 	@PostMapping("place/order")
 	public Map<String, String> orderCreate(@RequestBody OrderDto orderDto) {
-		
+		Map<String, String> responseMap = new HashMap();
 		System.out.println(orderDto);
 		orderService.placeOrder(orderDto);
 		 responseMap.put("msg", "ORDER_CREATED_SUCCESSFULLY");
