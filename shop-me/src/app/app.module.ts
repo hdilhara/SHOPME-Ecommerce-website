@@ -41,7 +41,8 @@ import { OrderComponent } from './components/order/order.component';
     FormsModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
-      {path: '',component:HomePageComponent},
+      {path: '', component:HomePageComponent},
+      {path: 'test', component:TestComponent},
       {path: 'cart', component: CartComponent},
       {path: 'order', component: OrderComponent},
       {path: 'system/update/product/:product-id', component: UpdateProductComponent },

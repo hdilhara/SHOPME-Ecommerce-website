@@ -7,6 +7,9 @@
             <div *ngIf="isLogedIn" >
                 <div style="text-align: center;">
                     <h4>Welcome back {{user}}!</h4>
+                    <div *ngIf="orderCreated" class="alert alert-success">
+                        Order Created successfuly!
+                    </div>
                     <br>
                     <b>Your Deliver Details</b>
                     <div *ngIf="!have">
@@ -37,8 +40,8 @@
                 <div style="text-align: center;">
                     <b>Total Payment : {{totalPayment | currency :'රු .'}}</b><br>
                     <input ngModel name="confirm" type="checkbox" >
-                    agree to pay when product delivered. <br>
-                    <button  type="button" class="btn btn-success btn-sm" [disabled]="!have"> Confirm Order</button>
+                    agree to pay when product delivered. val of have-{{have}}<br>
+                    <button  type="button" class="btn btn-success btn-sm" [disabled]="!have" (click)="createOrder()"> Confirm Order</button>
                 </div>
 
             </div>

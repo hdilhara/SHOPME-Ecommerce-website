@@ -60,4 +60,8 @@ export class CartService  {
     notifyCartChange(){
        return this.subject.asObservable();
     }
+
+    getProductsInCart(){
+        return this.addedProducts;
+    }
 }

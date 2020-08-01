@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hdilhara.shopme.dto.OrderDto;
 import com.hdilhara.shopme.entity.UserDetails;
+import com.hdilhara.shopme.services.OrderService;
 import com.hdilhara.shopme.services.UserDetailsService;
 
 
@@ -31,6 +33,9 @@ public class UserController {
 
 	@Autowired
 	UserDetailsService userDetailsService;
+	
+	@Autowired
+	OrderService orderService;
 	
 	Map<String, String> responseMap = new HashMap();
 	
@@ -55,5 +60,13 @@ public class UserController {
 		}
 	}
 	
+	@PostMapping("place/order")
+	public Map<String, String> orderCreate(@RequestBody OrderDto orderDto) {
+		
+		System.out.println(orderDto);
+		orderService.placeOrder(orderDto);
+		 responseMap.put("msg", "ORDER_CREATED_SUCCESSFULLY");
+		 return responseMap;
+	}
 	
 }

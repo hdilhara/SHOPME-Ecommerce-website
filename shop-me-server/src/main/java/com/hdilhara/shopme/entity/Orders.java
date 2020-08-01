@@ -1,6 +1,6 @@
 package com.hdilhara.shopme.entity;
 
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,48 +12,54 @@ public class Orders {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String name;
+	private int orderId;
+	private String orderPerson;
 	private String address;
-	private String totalPrice;
+	private Float orderPrice;
+	private Date date;
 	
-	//many to many relation also add quantity to table
-//	private List<Product> product;
-
-	public int getId() {
-		return id;
+	
+	
+	public Orders(String orderPerson, String address, Float orderPrice) {
+		super();
+		this.orderPerson = orderPerson;
+		this.address = address;
+		this.orderPrice = orderPrice;
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	public Orders() {
+		super();
 	}
-
-	public String getName() {
-		return name;
+	public int getOrderId() {
+		return orderId;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
-
+	public String getOrderPerson() {
+		return orderPerson;
+	}
+	public void setOrderPerson(String orderPerson) {
+		this.orderPerson = orderPerson;
+	}
 	public String getAddress() {
 		return address;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-	public String getTotalPrice() {
-		return totalPrice;
+	public Float getOrderPrice() {
+		return orderPrice;
 	}
-
-	public void setTotalPrice(String totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setOrderPrice(Float orderPrice) {
+		this.orderPrice = orderPrice;
 	}
-
-
-
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
 	
 	
 	

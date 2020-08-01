@@ -9,19 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestComponent implements OnInit {
 
-  product={
-    title:'tidssd',
-    price: 141,
-  }
+  
 
-  categories=[{categoryId:1,category: 'backery'},{categoryId:1,category: 'backery'}];
-
-  constructor( private service: ProductService,private activeRoute:ActivatedRoute) { }
-
+  test=false;
   ngOnInit() {
   }
 
-  updateProduct(form){
-    console.log(form.form.value);
+  clickMe(){
+    this.test=!this.test;
   }
+ 
 }

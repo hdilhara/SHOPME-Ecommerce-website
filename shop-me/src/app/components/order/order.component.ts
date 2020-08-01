@@ -1,7 +1,10 @@
+import { Router } from '@angular/router';
+import { OrderDetailsModel } from './../../models/order-details-model';
 import { CartService } from './../../services/cart-service';
 import { UserService } from './../../services/user-service';
 import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
+import { ProductQuantityModel } from 'src/app/models/product-quantity-model';
 
 @Component({
   selector: 'app-order',
@@ -15,9 +18,10 @@ export class OrderComponent implements OnInit {
   totalPayment;
   have=false;
   deliveryDetails;
+  orderCreated=false;
   
 
-  constructor(private service: LoginService, private userService:UserService, private cartService:CartService) { 
+  constructor(private service: LoginService, private userService:UserService, private cartService:CartService,private router:Router) { 
     
   }
 
@@ -58,6 +62,27 @@ export class OrderComponent implements OnInit {
         contactNumber:null
       };
     
+      }
+    );
+  }
+
+  createOrder(){
+
+    let checkoutProducts=this.cartService.getProductsInCart();
+    let orderDetails=new OrderDetailsModel(this.deliveryDetails.name,
+      this.deliveryDetails.streetAddress1+' '+this.deliveryDetails.streetAddress2+' '+this.deliveryDetails.city,
+      this.totalPayment);
+    for(var i=0; i<checkoutProducts.length; i++){
+      let product=checkoutProducts[i];
+      let productQuantity = new ProductQuantityModel(product.id,product.count);
+      orderDetails.addproductQuantity(productQuantity);
+    } 
+    this.userService.createOrder(orderDetails)
+    .subscribe(
+      res=>{
+        console.log('success');
+        this.orderCreated=true;
+        this.router.navigate(['/']);
       }
     );
   }
