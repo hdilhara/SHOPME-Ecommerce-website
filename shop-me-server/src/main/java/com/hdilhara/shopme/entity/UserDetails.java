@@ -1,7 +1,12 @@
 package com.hdilhara.shopme.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class UserDetails {
@@ -13,6 +18,10 @@ public class UserDetails {
 	private String streetAddress2;
 	private String city;
 	private int contactNumber;
+	@JsonIgnore
+	@OneToMany(mappedBy = "userDetails")
+	private List<Orders> order;
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -48,6 +57,13 @@ public class UserDetails {
 	}
 	public void setContactNumber(int contactNumber) {
 		this.contactNumber = contactNumber;
+	}
+	
+	public List<Orders> getOrder() {
+		return order;
+	}
+	public void setOrder(List<Orders> order) {
+		this.order = order;
 	}
 	@Override
 	public String toString() {

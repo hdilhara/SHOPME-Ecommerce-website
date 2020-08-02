@@ -82,6 +82,7 @@ export class OrderComponent implements OnInit {
       res=>{
         this.orderCreated=true;
         setTimeout(()=>{this.router.navigate(['/']);}, 3000);
+        this.cartService.clearCart();
       }
     );
   }

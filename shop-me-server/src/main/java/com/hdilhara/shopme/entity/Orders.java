@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Orders {
@@ -18,13 +20,22 @@ public class Orders {
 	private Float orderPrice;
 	private Date date;
 	
-	
+	@ManyToOne
+	@JoinColumn(name = "userName" )
+	private UserDetails userDetails;
 	
 	public Orders(String orderPerson, String address, Float orderPrice) {
 		super();
 		this.orderPerson = orderPerson;
 		this.address = address;
 		this.orderPrice = orderPrice;
+	}
+	public Orders(String orderPerson, String address, Float orderPrice, UserDetails userDetails) {
+		super();
+		this.orderPerson = orderPerson;
+		this.address = address;
+		this.orderPrice = orderPrice;
+		this.userDetails = userDetails;
 	}
 	public Orders() {
 		super();
@@ -58,6 +69,12 @@ public class Orders {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public UserDetails getUserDetails() {
+		return userDetails;
+	}
+	public void setUserDetails(UserDetails userDetails) {
+		this.userDetails = userDetails;
 	}
 	
 	

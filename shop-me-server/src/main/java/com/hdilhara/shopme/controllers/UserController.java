@@ -1,6 +1,8 @@
 package com.hdilhara.shopme.controllers;
 
+import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hdilhara.shopme.dto.OrderDto;
+import com.hdilhara.shopme.entity.Orders;
 import com.hdilhara.shopme.entity.UserDetails;
 import com.hdilhara.shopme.services.OrderService;
 import com.hdilhara.shopme.services.UserDetailsService;
@@ -42,7 +45,6 @@ public class UserController {
 	@PostMapping("/add/delivery-details")
 	public ResponseEntity addDeliveryDetails(@RequestBody UserDetails userDetails) {
 		Map<String, String> responseMap = new HashMap();
-		System.out.println("xxxxxx");
 		if(userDetailsService.addDeliverDetails(userDetails)) {
 			responseMap.put("msg","DELIVER_DETAILS_ADDED_SUCCESSFULLY");
 			return  ResponseEntity.status(HttpStatus.ACCEPTED).body(responseMap);
@@ -72,6 +74,11 @@ public class UserController {
 		orderService.placeOrder(orderDto);
 		 responseMap.put("msg", "ORDER_CREATED_SUCCESSFULLY");
 		 return responseMap;
+	}
+	
+	@GetMapping("get/orders")
+	public List<Orders> getUserOrders(){
+		return userDetailsService.getOrder();
 	}
 	
 }
