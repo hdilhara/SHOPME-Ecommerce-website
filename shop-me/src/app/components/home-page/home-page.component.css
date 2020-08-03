@@ -7,3 +7,22 @@
     padding: 9px;
     text-align: center;
 }
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.cartButton{
+    text-align: center;
+    width: 45px;
+    height: 45px;
+    position: fixed;
+    bottom: 20px;
+    right: 18px;
+    color: #007BFF;
+    border-radius: 23px;
+    background-color: rgb(252, 238, 238);
+    line-height: 40px;
+    border: 1px solid;
+    cursor: pointer;
+}

@@ -44,8 +44,7 @@ export class LoginService{
         )
         .pipe(
             map(res=>{//if succed
-                this._router.navigate(['/']);
-                this.subjectLog.next(this.loggedinDetails());
+
             })
         );
         

@@ -2,6 +2,7 @@ import { logging, error } from 'protractor';
 import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,11 +25,16 @@ export class LoginComponent implements OnInit {
     this.service.createNewUser(form.value['email'],form.value['password']).subscribe(
       res=>{
         this.error=null;
+        this.userLogin(form);
       },
       error=>{
         this.error=error;
+      },
+      ()=>{
+        
       }
     );
+    
   }
   userLogin(form: HTMLInputElement){
     this.service.login(form.value['email'],form.value['password']).subscribe(
