@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,4 +76,10 @@ public class SystemController {
 			return ResponseEntity.ok(map.put("msg", "CANT_DELETE_PRODUCT"));
 	}
 	
+	@GetMapping("/orders")
+	public ResponseEntity<?> name() {
+		Map<String,String> response = new HashMap<String, String>();
+		
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.getAllOrders());
+	}
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.hdilhara.shopme.dto.ProductDetailsDto;
 import com.hdilhara.shopme.dto.ProductDto;
 import com.hdilhara.shopme.entity.Category;
+import com.hdilhara.shopme.repos.OrdersRepo;
 
 @Service
 public class SystemService {
@@ -14,6 +15,8 @@ public class SystemService {
 	ProductService productService;
 	@Autowired 
 	CategoryService categoryService;
+	@Autowired
+	OrdersRepo orderRepo;
 
 	public boolean addNewProduct(ProductDto productDto) {
 		return productService.addNewProduct(productDto);
@@ -30,6 +33,10 @@ public class SystemService {
 	public boolean deleteProduct(int id) {
 		// TODO Auto-generated method stub
 		return productService.deleteProduct(id);
+	}
+
+	public Object getAllOrders() {
+		return orderRepo.findAll();
 	}
 	
 	

@@ -18,7 +18,8 @@ public class Orders {
 	private String orderPerson;
 	private String address;
 	private Float orderPrice;
-	private Date date;
+	private String status= new String("Pending...");
+	private Date date = new Date();
 	
 	@ManyToOne
 	@JoinColumn(name = "userName" )
@@ -75,6 +76,12 @@ public class Orders {
 	}
 	public void setUserDetails(UserDetails userDetails) {
 		this.userDetails = userDetails;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

@@ -13,7 +13,7 @@
       <tr *ngFor="let product of products">
         <td><img class="product-image" [src]="product.imageUrl" ></td>
         <td>{{product.title}}</td>
-        <td>{{product.price}}</td>
+        <td>{{product.price | currency :'රු .' }}</td>
         <td>{{product.category.category}}</td>
         <td><a [routerLink]="['/system/update/product',product.productId]">edit</a></td>
       </tr>

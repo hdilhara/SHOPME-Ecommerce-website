@@ -11,6 +11,7 @@ export class UserService{
     getDeliveryDetailsUrl=environment.server_rootUrl+'user/get/delivery-details/';
     addDeliveryDetailsUrl=environment.server_rootUrl+'user/add/delivery-details';
     createOrderUrl=environment.server_rootUrl+'user/place/order';
+    getUserOrderUrl=environment.server_rootUrl+'user/get/orders';
 
     constructor(private _injector: Injector){}
 
@@ -30,5 +31,9 @@ export class UserService{
 
     createOrder(checkoutProducts){
         return this._http.post(this.createOrderUrl,checkoutProducts);
+    }
+
+    getUserOrders(){
+        return this._http.get(this.getUserOrderUrl);
     }
 }

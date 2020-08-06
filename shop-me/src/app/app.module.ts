@@ -19,6 +19,10 @@ import { TestComponent } from './components/test/test.component';
 import { AddCategoryComponent } from './components/add-category/add-category.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OrderComponent } from './components/order/order.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { ManageOrdersComponent } from './components/manage-orders/manage-orders.component';
+import { OrderOperationComponent } from './componetnts/order-operation/order-operation.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -33,7 +37,11 @@ import { OrderComponent } from './components/order/order.component';
     TestComponent,
     AddCategoryComponent,
     CartComponent,
-    OrderComponent
+    OrderComponent,
+    MyOrdersComponent,
+    ManageOrdersComponent,
+    OrderOperationComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +53,9 @@ import { OrderComponent } from './components/order/order.component';
       {path: 'test', component:TestComponent},
       {path: 'cart', component: CartComponent},
       {path: 'order', component: OrderComponent},
+      {path: 'user/my-orders', component: MyOrdersComponent},
+      {path: 'system/manage/orders/operation', component: OrderOperationComponent},
+      {path: 'system/manage/orders', component: ManageOrdersComponent},
       {path: 'system/update/product/:product-id', component: UpdateProductComponent },
       {path: 'system/manage/products', component:ManageProductComponent },
       {path: 'system/add/product', component: ProductComponent },

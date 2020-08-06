@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="col-md-10 offset-md-1">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Ordered Date & Time</th>
+                <th scope="col">Price</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orders" >
+                <th>{{order.orderId}}</th>
+                <td>{{order.date | date :'full'}}</td>
+                <td>{{order.orderPrice | currency :'රු .'}}</td>
+                <td>{{order.status}}</td>
+                <td><a routerLink="/system/manage/orders/operation"><button class="btn btn-success btn-sm">Operation</button></a></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+
